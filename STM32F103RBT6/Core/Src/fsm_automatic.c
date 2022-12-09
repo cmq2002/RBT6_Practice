@@ -17,88 +17,44 @@ void fsm_automatic_run(void){
 				setTimer2(1);
 				break;
 			case STATE_RED:
-				{
-					//West-East Direction
-					//enableRed1();
-					// Countdown number for W-E when red led on is the same as counterRED
-					//display7SEG1(counterRED);
-					if (timer2_flag == 1){
-						if (counterRed1 > AUTO_YELLOW){
-							//North-South Direction
-							//enableGreen2();
-
-							// Countdown number for N-S when green led on must start at 3
-//							display7SEG2(counterRED - setCounterYellow);
-
-							enableLedPannel(1);
-						}
-
-						else{
-							//North-South Direction
-							//enableYellow2();
-
-							// When red led on W-E count to 2, it's also a countdown number for yellow led of N-S
-//							display7SEG2(counterRED);
-							enableLedPannel(2);
-						}
-
-						counterRed1--;
-						if (counterRed1 == INIT){
-							counterRed1 = AUTO_RED;
-							statusAUTO1 = STATE_GREEN;
-						}
-						setTimer2(100);
+				if (timer2_flag == 1){
+					if (counterRed1 > AUTO_YELLOW){
+						enableLedPannel(1);
 					}
+
+					else{
+						enableLedPannel(2);
+					}
+
+					counterRed1--;
+					if (counterRed1 == INIT){
+						counterRed1 = AUTO_RED;
+						statusAUTO1 = STATE_GREEN;
+					}
+					setTimer2(100);
 				}
 				break;
-
 			case STATE_GREEN:
-				{
-					//West-East Direction
-//					enableGreen1();
-					if (timer2_flag == 1){
-						enableLedPannel(3);
-						//Countdown number in W-E when green led on is same as counterGreen
-	//					display7SEG1(counterGreen);
-
-						//North-South Direction
-	//					enableRed2();
-
-						// Meanwhile, countdown in N-S when red led on must start at 5
-	//					display7SEG2(counterGreen + setCounterYellow);
-
-						counterGreen1--;
-						if (counterGreen1 == INIT){
-							counterGreen1 = AUTO_GREEN;
-							statusAUTO1 = STATE_YELLOW;
-						}
-						setTimer2(100);
+				if (timer2_flag == 1){
+					enableLedPannel(3);
+					counterGreen1--;
+					if (counterGreen1 == INIT){
+						counterGreen1 = AUTO_GREEN;
+						statusAUTO1 = STATE_YELLOW;
 					}
+					setTimer2(100);
 				}
 				break;
 
 			case STATE_YELLOW:
-				{
-					//West-East Direction
-//					enableYellow1();
-					if (timer2_flag == 1){
-						enableLedPannel(4);
-						//Countdown number for W-E when yellow led on is same as counterYellow
-	//					display7SEG1(counterYellow);
-
-						//North-South Direction
-	//					enableRed2();
-
-						// The 2 seconds duration of yellow led in W-E is also the last 2 of red led on N-S
-	//					display7SEG2(counterYellow);
-
-						counterYellow1--;
-						if (counterYellow1 == INIT){
-							counterYellow1 = AUTO_YELLOW;
-							statusAUTO1 = STATE_RED;
-						}
-						setTimer2(100);
+				if (timer2_flag == 1){
+					enableLedPannel(4);
+					counterYellow1--;
+					if (counterYellow1 == INIT){
+						counterYellow1 = AUTO_YELLOW;
+						statusAUTO1 = STATE_RED;
 					}
+					setTimer2(100);
 				}
 				break;
 			default:
