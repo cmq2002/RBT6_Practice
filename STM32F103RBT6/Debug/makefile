@@ -66,8 +66,8 @@ all: main-build
 main-build: STM32F103RBT6.elf secondary-outputs
 
 # Tool invocations
-STM32F103RBT6.elf STM32F103RBT6.map: $(OBJS) $(USER_OBJS) F:\MCU_MPU_LAB\STM32F103RBT6\STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32F103RBT6.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"F:\MCU_MPU_LAB\STM32F103RBT6\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F103RBT6.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32F103RBT6.elf STM32F103RBT6.map: $(OBJS) $(USER_OBJS) F:\MCU_MPU_LAB\Traffic_Light_System_RBT6\STM32F103RBT6\STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "STM32F103RBT6.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"F:\MCU_MPU_LAB\Traffic_Light_System_RBT6\STM32F103RBT6\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F103RBT6.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

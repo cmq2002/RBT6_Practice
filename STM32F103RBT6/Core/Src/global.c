@@ -30,13 +30,9 @@ int AUTO_RED = 0;
 int AUTO_GREEN = 0;
 int AUTO_YELLOW = 0;
 
-int counterRed1 = 0;
-int counterGreen1 = 0;
-int counterYellow1 = 0;
-
-int counterRed2 = 0;
-int counterGreen2 = 0;
-int counterYellow2 = 0;
+int counterRed = 0;
+int counterGreen = 0;
+int counterYellow = 0;
 
 void initWaitingTime(void){
 	AUTO_RED = 5;
@@ -64,7 +60,7 @@ void initVar(void){
 	statusMODE4_2 = INIT;
 	statusMODE4_3 = INIT;
 
-	counterRed1 = AUTO_RED;
-	counterGreen1 = AUTO_GREEN;
-	counterYellow1 = AUTO_YELLOW;
+	counterRed = AUTO_RED;
+	counterGreen = AUTO_GREEN;
+	counterYellow = AUTO_YELLOW;
 }

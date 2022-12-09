@@ -18,7 +18,7 @@ void fsm_automatic_run(void){
 				break;
 			case STATE_RED:
 				if (timer2_flag == 1){
-					if (counterRed1 > AUTO_YELLOW){
+					if (counterRed > AUTO_YELLOW){
 						enableLedPannel(1);
 					}
 
@@ -26,9 +26,9 @@ void fsm_automatic_run(void){
 						enableLedPannel(2);
 					}
 
-					counterRed1--;
-					if (counterRed1 == INIT){
-						counterRed1 = AUTO_RED;
+					counterRed--;
+					if (counterRed == INIT){
+						counterRed = AUTO_RED;
 						statusAUTO1 = STATE_GREEN;
 					}
 					setTimer2(100);
@@ -37,9 +37,9 @@ void fsm_automatic_run(void){
 			case STATE_GREEN:
 				if (timer2_flag == 1){
 					enableLedPannel(3);
-					counterGreen1--;
-					if (counterGreen1 == INIT){
-						counterGreen1 = AUTO_GREEN;
+					counterGreen--;
+					if (counterGreen == INIT){
+						counterGreen = AUTO_GREEN;
 						statusAUTO1 = STATE_YELLOW;
 					}
 					setTimer2(100);
@@ -49,9 +49,9 @@ void fsm_automatic_run(void){
 			case STATE_YELLOW:
 				if (timer2_flag == 1){
 					enableLedPannel(4);
-					counterYellow1--;
-					if (counterYellow1 == INIT){
-						counterYellow1 = AUTO_YELLOW;
+					counterYellow--;
+					if (counterYellow == INIT){
+						counterYellow = AUTO_YELLOW;
 						statusAUTO1 = STATE_RED;
 					}
 					setTimer2(100);

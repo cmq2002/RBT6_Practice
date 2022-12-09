@@ -137,11 +137,6 @@ void buzzerProcess (void){
 	}
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////// LED PANEL /////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-
 /* USER CODE END 0 */
 
 /**
@@ -199,10 +194,9 @@ int main(void)
   {
 	if (timer1_flag == 1){
 		HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
-//		Led_Display_1();
 		setTimer1(100);
 	}
-//	fsm_automatic_run();
+	fsm_automatic_run();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -387,7 +381,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 // Interrupt is invoked every 10ms
-void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim )
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 
 	/*ledBlink(50, 50);

@@ -58,10 +58,10 @@ extern int AUTO_RED;
 extern int AUTO_GREEN ;
 extern int AUTO_YELLOW;
 
-// Counter for each side
-extern int counterRed1 ;
-extern int counterGreen1 ;
-extern int counterYellow1 ;
+// Counter for the lights
+extern int counterRed;
+extern int counterGreen;
+extern int counterYellow;
 
 // Status for MODE1
 extern int statusAUTO1; // For displaying traffic light
