@@ -20,7 +20,8 @@
   - fsm_automatic: automatic mode for the system
   - software_timer: provide a timer 
 ## For team members:
-- You only need to clone the project in the first time
-- Anything changes locally is submitted to the Modules folder as source code file only.
+- The main branch contains the latest version of our project.
+- You only need to pull from the main branch and create your own branch to test your feature.
+- Anything changes locally is submitted to the Modules folder as source code file only so that the leader can synchronize the work. 
 - It is recommended that you should visit the STM32CubeIde to download the latest version 1.11.0 to avoid conflict. Before doing that, please uninstall your current version which is 1.7.0.
 - Fresh installing from the website will eliminate error occurs when we debug the code using STLink-V2 (Note: Using update feature is not a good choice as error will be prompted)  
