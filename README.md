@@ -14,6 +14,11 @@
 - Schematic_Design folder contains the design for all components
 - Modules is where we implement the library for each components seperately
 - STM32F103RBT6 consists of the whole project with all configurations and source code
+  - global: all global variables and labels
+  - led_pannel: control the leds
+  - app_i2c_lcd: working with lcd
+  - fsm_automatic: automatic mode for the system
+  - software_timer: provide a timer 
 ## For team members:
 - You only need to clone the project in the first time
 - Anything changes locally is submitted to the Modules folder as source code file only.
