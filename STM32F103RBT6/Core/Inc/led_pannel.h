@@ -11,7 +11,6 @@
 #include "main.h"
 #include "global.h"
 
-
 void latchEnable (void);
 
 void latchDisable (void);
@@ -27,11 +26,6 @@ void clockOFF (void);
 void dataOUT (GPIO_PinState state);
 
 uint8_t getBitValue (uint8_t data, uint8_t index);
-
-void ledDisplay1();
-void ledDisplay2();
-void ledDisplay3();
-void ledDisplay4();
 
 void enableLedPannel(int index);
 

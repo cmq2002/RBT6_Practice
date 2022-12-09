@@ -41,20 +41,23 @@ uint8_t getBitValue (uint8_t data, uint8_t index){
 }
 
 
+uint32_t data1[4] = {0x80, 0x30, 0x00, 0x00};
+uint32_t data2[4] = {0x40, 0x40, 0x21, 0x0D};
+
 void ledDisplay1 (void){	//red1 + green2
 	uint8_t i;
-	uint32_t data1 = 0x80;
-	uint32_t data2 = 0x40;
+	uint32_t temp1 = data1[0];
+	uint32_t temp2 = data2[0];
 	latchDisable();
 	for(i = 0; i < 8; i++){
 		clockOFF();
-		dataOUT(getBitValue(data1, i));
+		dataOUT(getBitValue(temp1, i));
 		clockON();
 	}
 
 	for(i = 0; i < 8; i++){
 		clockOFF();
-		dataOUT(getBitValue(data2, i));
+		dataOUT(getBitValue(temp2, i));
 		clockON();
 	}
 	latchEnable();
@@ -62,18 +65,18 @@ void ledDisplay1 (void){	//red1 + green2
 
 void ledDisplay2 (void){	//red1 + yellow2
 	uint8_t i;
-	uint32_t data1 = 0x30;
-	uint32_t data2 = 0x40;
+	uint32_t temp1 = data1[1];
+	uint32_t temp2 = data2[1];
 	latchDisable();
 	for(i = 0; i < 8; i++){
 		clockOFF();
-		dataOUT(getBitValue(data1, i));
+		dataOUT(getBitValue(temp1, i));
 		clockON();
 	}
 
 	for(i = 0; i < 8; i++){
 		clockOFF();
-		dataOUT(getBitValue(data2, i));
+		dataOUT(getBitValue(temp2, i));
 		clockON();
 	}
 	latchEnable();
@@ -81,18 +84,18 @@ void ledDisplay2 (void){	//red1 + yellow2
 
 void ledDisplay3 (void){	//Green1 + Red2
 	uint8_t i;
-	uint32_t data1 = 0x00;
-	uint32_t data2 = 0x21;
+	uint32_t temp1 = data1[2];
+	uint32_t temp2 = data2[2];
 	latchDisable();
 	for(i = 0; i < 8; i++){
 		clockOFF();
-		dataOUT(getBitValue(data1, i));
+		dataOUT(getBitValue(temp1, i));
 		clockON();
 	}
 
 	for(i = 0; i < 8; i++){
 		clockOFF();
-		dataOUT(getBitValue(data2, i));
+		dataOUT(getBitValue(temp2, i));
 		clockON();
 	}
 	latchEnable();
@@ -100,18 +103,18 @@ void ledDisplay3 (void){	//Green1 + Red2
 
 void ledDisplay4 (void){	//Yellow1 + Red2
 	uint8_t i;
-	uint32_t data1 = 0x00;
-	uint32_t data2 = 0x0D;
+	uint32_t temp1 = data1[3];
+	uint32_t temp2 = data2[3];
 	latchDisable();
 	for(i = 0; i < 8; i++){
 		clockOFF();
-		dataOUT(getBitValue(data1, i));
+		dataOUT(getBitValue(temp1, i));
 		clockON();
 	}
 
 	for(i = 0; i < 8; i++){
 		clockOFF();
-		dataOUT(getBitValue(data2, i));
+		dataOUT(getBitValue(temp2, i));
 		clockON();
 	}
 	latchEnable();
