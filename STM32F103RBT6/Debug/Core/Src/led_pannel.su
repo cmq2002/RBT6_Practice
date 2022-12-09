@@ -1,0 +1,13 @@
+../Core/Src/led_pannel.c:10:6:latchEnable	8	static
+../Core/Src/led_pannel.c:14:6:latchDisable	8	static
+../Core/Src/led_pannel.c:18:6:outputEnable	8	static
+../Core/Src/led_pannel.c:22:6:outputDisable	8	static
+../Core/Src/led_pannel.c:26:6:clockON	8	static
+../Core/Src/led_pannel.c:30:6:clockOFF	8	static
+../Core/Src/led_pannel.c:34:6:dataOUT	16	static
+../Core/Src/led_pannel.c:38:9:getBitValue	16	static
+../Core/Src/led_pannel.c:44:6:ledDisplay1	24	static
+../Core/Src/led_pannel.c:63:6:ledDisplay2	24	static
+../Core/Src/led_pannel.c:82:6:ledDisplay3	24	static
+../Core/Src/led_pannel.c:101:6:ledDisplay4	24	static
+../Core/Src/led_pannel.c:121:6:enableLedPannel	16	static
