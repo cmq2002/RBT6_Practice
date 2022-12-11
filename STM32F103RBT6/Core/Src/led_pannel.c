@@ -6,6 +6,7 @@
  */
 
 #include "led_pannel.h"
+#include <stdio.h>
 
 void latchEnable (void){
 	HAL_GPIO_WritePin(LED_LE_GPIO_Port, LED_LE_Pin, RESET);
@@ -138,4 +139,23 @@ void enableLedPannel (int index){
 		default:
 			break;
 	}
+}
+
+void displayNum(int num1, int num2){
+	char str1[2];
+	char str2[2];
+
+	sprintf(str1, "%d", num1);
+	sprintf(str2, "%d", num2);
+
+	Lcd_Goto_XY(0, 0);
+	Lcd_Send_String("Lane 1: ");
+	Lcd_Goto_XY(0, 8);
+	Lcd_Send_String(str1);
+
+	Lcd_Goto_XY(1, 0);
+	Lcd_Send_String("Lane 2: ");
+	Lcd_Goto_XY(1, 8);
+	Lcd_Send_String(str2);
+
 }

@@ -7,8 +7,8 @@
 
 #include "fsm_automatic.h"
 
-int led_buffer[2] = {0,0};
-//Each state will have 1s to perform task
+int num_buffer[2] = {0,0};
+
 void fsm_automatic_run(void){
 	if (mode == MODE1){
 		switch (statusAUTO1){
@@ -20,12 +20,14 @@ void fsm_automatic_run(void){
 				if (timer2_flag == 1){
 					if (counterRed > AUTO_YELLOW){
 						enableLedPannel(1);
+						num_buffer[0] = counterRed;
+						num_buffer[1] = counterRed - counterYellow;
 					}
-
 					else{
 						enableLedPannel(2);
+						num_buffer[0] = counterRed;
+						num_buffer[1] = counterRed;
 					}
-
 					counterRed--;
 					if (counterRed == INIT){
 						counterRed = AUTO_RED;
@@ -37,6 +39,8 @@ void fsm_automatic_run(void){
 			case STATE_GREEN:
 				if (timer2_flag == 1){
 					enableLedPannel(3);
+					num_buffer[0] = counterGreen;
+					num_buffer[1] = counterGreen + counterYellow;
 					counterGreen--;
 					if (counterGreen == INIT){
 						counterGreen = AUTO_GREEN;
@@ -49,6 +53,8 @@ void fsm_automatic_run(void){
 			case STATE_YELLOW:
 				if (timer2_flag == 1){
 					enableLedPannel(4);
+					num_buffer[0] = counterYellow;
+					num_buffer[1] = counterYellow;
 					counterYellow--;
 					if (counterYellow == INIT){
 						counterYellow = AUTO_YELLOW;
@@ -60,6 +66,8 @@ void fsm_automatic_run(void){
 			default:
 				break;
 		}
+
+		displayNum(num_buffer[0], num_buffer[1]);
 		//For W-E direction
 //		switch (statusAUTO1){
 //			case INIT:
