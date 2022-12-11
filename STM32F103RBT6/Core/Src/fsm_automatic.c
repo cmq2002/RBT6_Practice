@@ -67,7 +67,24 @@ void fsm_automatic_run(void){
 				break;
 		}
 
+
 		displayNum(num_buffer[0], num_buffer[1]);
+//		switch (statusAUTO2){
+//			case INIT:
+//				statusAUTO2 = DISPLAY;
+//				break;
+//			case DISPLAY:
+//				displayNum(num_buffer[0], num_buffer[1]);
+//				statusAUTO2 = CLEAR;
+//				setTimer4(30);
+//				break;
+//			case CLEAR:
+//				if (timer4_flag == 1){
+//					Lcd_Clear_Display();
+//					statusAUTO2 = DISPLAY;
+//				}
+//				break;
+//		}
 		//For W-E direction
 //		switch (statusAUTO1){
 //			case INIT:

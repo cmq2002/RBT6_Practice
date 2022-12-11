@@ -141,7 +141,7 @@ void buzzerProcess (void){
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	if (huart->Instance == USART2){
+	if (huart->Instance == USART3){
 		HAL_UART_Transmit(&huart3, &buffer_byte, 1, 500);
 		buffer[index_buffer] = buffer_byte;
 		index_buffer++;
@@ -190,6 +190,7 @@ int main(void)
   HAL_GPIO_WritePin(OE_GPIO_Port, OE_Pin, RESET);
   outputEnable();
   Lcd_Initialization();
+//  Lcd_Send_Data('3');
   initWaitingTime();
   initVar();
   setTimer1(1);
@@ -204,13 +205,14 @@ int main(void)
 //		HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
 //		setTimer1(100);
 //	}
+
 	fsm_automatic_run();
 
-	if (buffer_flag == 1){
-		cmd_parser_fsm();
-		buffer_flag = 0;
-	}
-	uart_comms_fsm();
+//	if (buffer_flag == 1){
+//		cmd_parser_fsm();
+//		buffer_flag = 0;
+//	}
+//	uart_comms_fsm();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

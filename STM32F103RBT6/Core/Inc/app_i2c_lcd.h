@@ -28,7 +28,7 @@ void Show_Box_ID(uint16_t bID);
 
 void Show_KWH(uint32_t ws);
 
-
+void displayNum (int num1, int num2);
 
 
 #endif /* APP_I2C_LCD_H_ */

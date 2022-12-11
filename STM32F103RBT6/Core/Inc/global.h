@@ -30,8 +30,8 @@
 #define SAVE 4
 
 // Use to specify which 7-seg led is blinked
-#define DOZEN 1
-#define UNIT 2
+#define DISPLAY 1
+#define CLEAR 2
 
 // Threshold for waiting time
 #define UPPER_BOUND 99
