@@ -24,9 +24,10 @@ Core/Src/led_pannel.o: ../Core/Src/led_pannel.c ../Core/Inc/led_pannel.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/global.h ../Core/Inc/software_timer.h \
  ../Core/Inc/fsm_automatic.h ../Core/Inc/led_pannel.h \
- ../Core/Inc/app_i2c_lcd.h
+ ../Core/Inc/app_i2c_lcd.h ../Core/Inc/uart_reading.h
 ../Core/Inc/led_pannel.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -54,8 +55,10 @@ Core/Src/led_pannel.o: ../Core/Src/led_pannel.c ../Core/Inc/led_pannel.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 ../Core/Inc/global.h:
 ../Core/Inc/software_timer.h:
 ../Core/Inc/fsm_automatic.h:
 ../Core/Inc/led_pannel.h:
 ../Core/Inc/app_i2c_lcd.h:
+../Core/Inc/uart_reading.h:

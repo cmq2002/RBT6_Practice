@@ -12,6 +12,7 @@
 #include "fsm_automatic.h"
 #include "led_pannel.h"
 #include "app_i2c_lcd.h"
+#include "uart_reading.h"
 
 
 /*-------------------------------- Define States -------------------------------*/

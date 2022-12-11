@@ -140,16 +140,16 @@ void buzzerProcess (void){
 	}
 }
 
-//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-//	if (huart->Instance == USART2){
-//		HAL_UART_Transmit(&huart2, &buffer_byte, 1, 500);
-//		buffer[index_buffer] = buffer_byte;
-//		index_buffer++;
-//		if (index_buffer == MAX_BUFFER_SIZE) index_buffer = 0;
-//		buffer_flag = 1;
-//		HAL_UART_Receive_IT(&huart2, &buffer_byte, 1);
-//	}
-//}
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	if (huart->Instance == USART2){
+		HAL_UART_Transmit(&huart3, &buffer_byte, 1, 500);
+		buffer[index_buffer] = buffer_byte;
+		index_buffer++;
+		if (index_buffer == MAX_BUFFER_SIZE) index_buffer = 0;
+		buffer_flag = 1;
+		HAL_UART_Receive_IT(&huart3, &buffer_byte, 1);
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -200,11 +200,17 @@ int main(void)
 
   while (1)
   {
-	if (timer1_flag == 1){
-		HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
-		setTimer1(100);
-	}
+//	if (timer1_flag == 1){
+//		HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
+//		setTimer1(100);
+//	}
 	fsm_automatic_run();
+
+	if (buffer_flag == 1){
+		cmd_parser_fsm();
+		buffer_flag = 0;
+	}
+	uart_comms_fsm();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

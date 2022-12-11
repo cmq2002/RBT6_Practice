@@ -1,0 +1,5 @@
+../Core/Src/uart_reading.c:27:5:isCmdEqualToRST	24	static
+../Core/Src/uart_reading.c:36:5:isCmdEqualToOK	24	static
+../Core/Src/uart_reading.c:45:5:isCmdEqualTo1	24	static
+../Core/Src/uart_reading.c:54:6:cmd_parser_fsm	8	static
+../Core/Src/uart_reading.c:82:6:uart_comms_fsm	8	static
