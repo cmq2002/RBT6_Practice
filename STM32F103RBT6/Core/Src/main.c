@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "global.h"
+#include "fsm_automatic.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,6 +55,7 @@
 I2C_HandleTypeDef hi2c1;
 
 TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim3;
 
 UART_HandleTypeDef huart3;
 
@@ -67,78 +69,13 @@ static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_USART3_UART_Init(void);
+static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-/////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////// Turn on in x secs and turn off in y secs /////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-static int counterBUZZ = 0; // For Buzzer
-void buzzer (uint32_t on, uint32_t off){
-	if (on == 0) return;
-	counterBUZZ = (counterBUZZ + 1) % (off + on);
-	if (counterBUZZ == 0) HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, SET);
-	if (counterBUZZ == on) HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, RESET);
-}
-
-static int counterLED = 0;  // For LED
-void ledBlink (uint32_t on, uint32_t off){
-	if (on == 0) return;
-	counterLED = (counterLED+1) % (on+off);
-	if (counterLED == 0) HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, RESET);
-	if (counterLED == on) HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//onTime = 1000/delay_time * 1/f * duty/100
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////// Var For System Status ////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-const int delay_time = 10;
-const int delay_for_system_status_change = 60000/delay_time;
-static int systemStatus = 0;
-static int counterForSystemStatus = 0;
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-void UpdateStatus (void){
-	counterForSystemStatus = (counterForSystemStatus+1) % delay_for_system_status_change;
-	if (counterForSystemStatus == 0)
-		systemStatus = (systemStatus + 1) % 4;
-}
-
-static uint8_t counterForState0 = 0;
-void buzzerStartUp (void){
-	if (counterForState0 % 100 == 0) HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, RESET);
-	if (counterForState0 % 100 == 50) HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, SET);
-	if (counterForState0 < 200)	counterForState0++;
-}
-
-void buzzerProcess (void){
-	switch (systemStatus){
-		case 0:
-			buzzerStartUp();
-			break;
-		case 1:
-			buzzer(50,450);
-			counterForState0 = 0;
-			break;
-		case 2:
-			buzzer(50,50);
-			counterForState0 = 0;
-			break;
-		case 3:
-			buzzer(50,0);
-			counterForState0 = 0;
-			break;
-		default:
-			break;
-	}
-}
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	if (huart->Instance == USART3){
@@ -183,17 +120,18 @@ int main(void)
   MX_TIM2_Init();
   MX_I2C1_Init();
   MX_USART3_UART_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
+  HAL_TIM_Base_Start_IT(&htim3);
   HAL_UART_Receive_IT(&huart3, &buffer_byte, 1);
-  //buzzerStartUp();
   HAL_GPIO_WritePin(OE_GPIO_Port, OE_Pin, RESET);
   outputEnable();
   Lcd_Initialization();
-//  Lcd_Send_Data('3');
   initWaitingTime();
   initVar();
   setTimer1(1);
+  play_music();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -208,11 +146,11 @@ int main(void)
 
 	fsm_automatic_run();
 
-//	if (buffer_flag == 1){
-//		cmd_parser_fsm();
-//		buffer_flag = 0;
-//	}
-//	uart_comms_fsm();
+	if (buffer_flag == 1){
+		cmd_parser_fsm();
+		buffer_flag = 0;
+	}
+	uart_comms_fsm();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -336,6 +274,65 @@ static void MX_TIM2_Init(void)
 }
 
 /**
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_OC_InitTypeDef sConfigOC = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 63;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 999;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_OC_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigOC.OCMode = TIM_OCMODE_TIMING;
+  sConfigOC.Pulse = 0;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  if (HAL_TIM_OC_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
+  HAL_TIM_MspPostInit(&htim3);
+
+}
+
+/**
   * @brief USART3 Initialization Function
   * @param None
   * @retval None
@@ -387,7 +384,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, LED_SCK_Pin|LED_LE_Pin|LED_OE_Pin|LED_SDI_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, RED_LED_Pin|BUZZER_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(OE_GPIO_Port, OE_Pin, GPIO_PIN_RESET);
@@ -399,12 +396,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : RED_LED_Pin BUZZER_Pin */
-  GPIO_InitStruct.Pin = RED_LED_Pin|BUZZER_Pin;
+  /*Configure GPIO pin : RED_LED_Pin */
+  GPIO_InitStruct.Pin = RED_LED_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  HAL_GPIO_Init(RED_LED_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : OE_Pin */
   GPIO_InitStruct.Pin = OE_Pin;

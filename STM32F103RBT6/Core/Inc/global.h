@@ -9,11 +9,10 @@
 #define INC_GLOBAL_H_
 
 #include"software_timer.h"
-#include "fsm_automatic.h"
 #include "led_pannel.h"
 #include "app_i2c_lcd.h"
 #include "uart_reading.h"
-
+#include "buzzer.h"
 
 /*-------------------------------- Define States -------------------------------*/
 #define INIT 0
@@ -34,7 +33,7 @@
 #define CLEAR 2
 
 // Threshold for waiting time
-#define UPPER_BOUND 99
+#define UPPER_BOUND 999
 #define LOWER_BOUND 1
 
 /*-----------------------------4 modes available--------------------------------*/

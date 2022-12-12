@@ -8,6 +8,7 @@
 #include "fsm_automatic.h"
 
 int num_buffer[2] = {0,0};
+int state_buffer[2] = {0,0};
 
 void fsm_automatic_run(void){
 	if (mode == MODE1){
@@ -17,13 +18,16 @@ void fsm_automatic_run(void){
 				setTimer2(1);
 				break;
 			case STATE_RED:
+				state_buffer[0] = STATE_RED;
 				if (timer2_flag == 1){
 					if (counterRed > AUTO_YELLOW){
+						state_buffer[1] = STATE_GREEN;
 						enableLedPannel(1);
 						num_buffer[0] = counterRed;
 						num_buffer[1] = counterRed - counterYellow;
 					}
 					else{
+						state_buffer[1] = STATE_YELLOW;
 						enableLedPannel(2);
 						num_buffer[0] = counterRed;
 						num_buffer[1] = counterRed;
@@ -37,6 +41,8 @@ void fsm_automatic_run(void){
 				}
 				break;
 			case STATE_GREEN:
+				state_buffer[0] = STATE_GREEN;
+				state_buffer[1] = STATE_RED;
 				if (timer2_flag == 1){
 					enableLedPannel(3);
 					num_buffer[0] = counterGreen;
@@ -49,8 +55,9 @@ void fsm_automatic_run(void){
 					setTimer2(100);
 				}
 				break;
-
 			case STATE_YELLOW:
+				state_buffer[0] = STATE_YELLOW;
+				state_buffer[1] = STATE_RED;
 				if (timer2_flag == 1){
 					enableLedPannel(4);
 					num_buffer[0] = counterYellow;
@@ -68,7 +75,7 @@ void fsm_automatic_run(void){
 		}
 
 
-		displayNum(num_buffer[0], num_buffer[1]);
+		displayNum(num_buffer[0], num_buffer[1], state_buffer[0], state_buffer[1]);
 //		switch (statusAUTO2){
 //			case INIT:
 //				statusAUTO2 = DISPLAY;

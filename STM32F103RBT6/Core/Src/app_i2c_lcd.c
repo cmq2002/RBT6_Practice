@@ -6,11 +6,7 @@
  */
 
 
-#include <app_i2c_lcd.h>
-#include "main.h"
-#include <math.h>
-#include <stdio.h>
-#include <string.h>
+#include "app_i2c_lcd.h"
 
 extern I2C_HandleTypeDef hi2c1;  // change your handler here accordingly
 
@@ -483,12 +479,23 @@ void Show_KWH(uint32_t ws){
 	Lcd_Send_String((char*)strTotalKWH);
 }
 
-void displayNum(int num1, int num2){
+void displayNum(int num1, int num2, int state1, int state2){
 	char str1[16];
 	char str2[16];
 
-	sprintf(str1, "Lane1: %02d", num1);
-	sprintf(str2, "Lane2: %02d", num2);
+	if (state1 == STATE_RED)
+		sprintf(str1, "Lane1->R: %03d", num1);
+	else if (state1 == STATE_GREEN)
+		sprintf(str1, "Lane1->G: %03d", num1);
+	else if (state1 == STATE_YELLOW)
+		sprintf(str1, "Lane1->Y: %03d", num1);
+
+	if (state2 == STATE_RED)
+		sprintf(str2, "Lane2->R: %03d", num2);
+	else if (state2 == STATE_GREEN)
+		sprintf(str2, "Lane2->G: %03d", num2);
+	else if (state2 == STATE_YELLOW)
+		sprintf(str2, "Lane2->Y: %03d", num2);
 
 	Lcd_Goto_XY(0, 0);
 	Lcd_Send_String((char*)str1);

@@ -9,7 +9,6 @@
 #define INC_LED_PANNEL_H_
 
 #include "main.h"
-#include "global.h"
 
 void latchEnable (void);
 

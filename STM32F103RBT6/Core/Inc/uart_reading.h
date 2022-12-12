@@ -8,10 +8,10 @@
 #ifndef INC_UART_READING_H_
 #define INC_UART_READING_H_
 
+#include "main.h"
 #include "global.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #define INIT 0
 

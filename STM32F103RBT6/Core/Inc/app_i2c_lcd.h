@@ -9,6 +9,11 @@
 #define APP_I2C_LCD_H_
 
 #include "main.h"
+#include "global.h"
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+
 
 void LCD_Testing(void);
 
@@ -28,7 +33,7 @@ void Show_Box_ID(uint16_t bID);
 
 void Show_KWH(uint32_t ws);
 
-void displayNum (int num1, int num2);
+void displayNum (int num1, int num2, int state1, int state2);
 
 
 #endif /* APP_I2C_LCD_H_ */
