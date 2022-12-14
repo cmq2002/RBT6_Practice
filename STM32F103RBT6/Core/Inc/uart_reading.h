@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define INIT 0
+#define INIT_UART 0
 
 #define READING 1
 

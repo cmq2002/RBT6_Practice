@@ -21,8 +21,8 @@ uint8_t buffer_flag = 0;
 int status1 = INIT;
 uint8_t cmd_flag = INIT;
 uint8_t cmd_data[MAX_CMD_SIZE];
+uint8_t traveler = 0;
 uint8_t cmd_data_index = 0;
-int ADC_value = 0;
 
 int isCmdEqualToRST(uint8_t str[]){
 	int flag = 0;
@@ -42,26 +42,32 @@ int isCmdEqualToOK(uint8_t str[]){
 	return flag;
 }
 
-int isCmdEqualTo1(uint8_t str[]){
-	int flag = 0;
-	if (str[0] == '1')
-		flag = 1;
-	else
-		flag = 0;
-	return flag;
-}
-
 void cmd_parser_fsm(){
 	switch(status1){
-		case INIT:
-			if (buffer_byte == '!') status1 = READING;
+		case INIT_UART:
+			if (buffer[traveler] == '!') status1 = READING;
+			traveler++;
+			if (traveler == MAX_BUFFER_SIZE) traveler = 0;
+//			if (buffer_flag == 0){
+//				index_buffer = 0;
+//				traveler = 0;
+//			}
 			break;
 		case READING:
-			if (buffer_byte != '!' && buffer_byte != '#'){
-				cmd_data[cmd_data_index] = buffer_byte;
+			if (buffer[traveler] != '!' && buffer[traveler] != '#'){
+				cmd_data[cmd_data_index] = buffer[traveler];
 				cmd_data_index++;
 			}
-			if (buffer_byte == '#') {status1 = STOP; cmd_data_index = 0;}
+			if (buffer[traveler] == '#'){
+				status1 = STOP;
+				cmd_data_index = 0;
+			}
+			traveler++;
+			if (traveler == MAX_BUFFER_SIZE) traveler = 0;
+//			if (buffer_flag == 0){
+//				index_buffer = 0;
+//				traveler = 0;
+//			}
 			break;
 		case STOP:
 			if (isCmdEqualToRST(cmd_data)==1){
@@ -89,7 +95,7 @@ void uart_comms_fsm(){
 			}
 		    break;
 		case OK:
-			ADC_value = -1;
+//			ADC_value = -1;
 			cmd_flag = INIT;
 			break;
 		default:

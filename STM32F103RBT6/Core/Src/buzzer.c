@@ -11,14 +11,14 @@ extern TIM_HandleTypeDef htim3;
 /////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// Turn on in x secs and turn off in y secs /////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
-//static int counterBUZZ = 0; // For Buzzer
-//void buzzer (uint32_t on, uint32_t off){
-//	if (on == 0) return;
-//	counterBUZZ = (counterBUZZ + 1) % (off + on);
-//	if (counterBUZZ == 0) HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, SET);
-//	if (counterBUZZ == on) HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, RESET);
-//}
-//
+static int counterBUZZ = 0; // For Buzzer
+void buzzer (uint32_t on, uint32_t off){
+	if (on == 0) return;
+	counterBUZZ = (counterBUZZ + 1) % (off + on);
+	if (counterBUZZ == 0) HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, SET);
+	if (counterBUZZ == on) HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, RESET);
+}
+
 //static int counterLED = 0;  // For LED
 //void ledBlink (uint32_t on, uint32_t off){
 //	if (on == 0) return;
@@ -76,14 +76,19 @@ extern TIM_HandleTypeDef htim3;
 //}
 
 
-uint8_t i = 0;
-uint16_t beep[3] = {1, 1, 1};
-static const uint16_t melody[] = {NOTE_C6, NOTE_C6, NOTE_D6, NOTE_D6, NOTE_E6, NOTE_E6, NOTE_C6, 1};
-static const uint16_t melodyLength = sizeof(melody) / sizeof(uint16_t);
-
-
-void play_music(void){
-	__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 10 + beep[i%3]);
-	TIM3->PSC = 64000/melody[i%melodyLength];
-	i++;
-}
+//uint8_t i = 0;
+//uint16_t beep[3] = {1, 1, 1};
+//const uint16_t melody[] = {NOTE_C6, NOTE_C6, NOTE_D6, NOTE_D6, NOTE_E6, NOTE_E6, NOTE_C6, 1,
+//		NOTE_C6, NOTE_C6, NOTE_D6, NOTE_D6, NOTE_E6, NOTE_E6, NOTE_C6, 1,
+//		NOTE_E6, NOTE_E6, NOTE_F6, NOTE_F6, NOTE_F6, NOTE_G6, 1, 1,
+//		NOTE_E6, NOTE_E6, NOTE_F6, NOTE_F6, NOTE_F6, NOTE_G6, 1, 1,
+//		NOTE_G6, NOTE_A6, NOTE_G6, NOTE_F6, NOTE_E6, NOTE_C6,
+//		NOTE_G6, NOTE_A6, NOTE_G6, NOTE_F6, NOTE_E6, NOTE_C6};
+//const uint16_t melodyLength = sizeof(melody) / sizeof(uint16_t);
+//
+//
+//void play_music(void){
+//	__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 15 + beep[i%3]);
+//	TIM3->PSC = 64000/melody[i%melodyLength];
+//	i++;
+//}

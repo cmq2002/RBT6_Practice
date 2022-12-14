@@ -1,1 +1,1 @@
-../Core/Src/buzzer.c:85:6:play_music	4	static
+../Core/Src/buzzer.c:15:6:buzzer	16	static
