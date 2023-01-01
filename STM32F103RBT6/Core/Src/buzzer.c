@@ -19,13 +19,13 @@ void buzzer (uint32_t on, uint32_t off){
 	if (counterBUZZ == on) HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, RESET);
 }
 
-//static int counterLED = 0;  // For LED
-//void ledBlink (uint32_t on, uint32_t off){
-//	if (on == 0) return;
-//	counterLED = (counterLED+1) % (on+off);
-//	if (counterLED == 0) HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, RESET);
-//	if (counterLED == on) HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
-//}
+static int counterLED = 0;  // For LED
+void ledBlink (uint32_t on, uint32_t off){
+	if (on == 0) return;
+	counterLED = (counterLED+1) % (on+off);
+	if (counterLED == 0) HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, RESET);
+	if (counterLED == on) HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 ////onTime = 1000/delay_time * 1/f * duty/100

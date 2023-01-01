@@ -1,1 +1,2 @@
 ../Core/Src/buzzer.c:15:6:buzzer	16	static
+../Core/Src/buzzer.c:23:6:ledBlink	16	static

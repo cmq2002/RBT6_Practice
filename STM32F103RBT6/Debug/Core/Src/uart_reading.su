@@ -1,4 +1,4 @@
-../Core/Src/uart_reading.c:27:5:isCmdEqualToRST	24	static
-../Core/Src/uart_reading.c:36:5:isCmdEqualToOK	24	static
-../Core/Src/uart_reading.c:45:6:cmd_parser_fsm	8	static
-../Core/Src/uart_reading.c:88:6:uart_comms_fsm	8	static
+../Core/Src/uart_reading.c:25:5:isCmdEqualToRST	24	static
+../Core/Src/uart_reading.c:34:5:isCmdEqualToOK	24	static
+../Core/Src/uart_reading.c:43:6:cmd_parser_fsm	8	static
+../Core/Src/uart_reading.c:179:6:uart_comms_fsm	8	static

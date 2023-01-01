@@ -8,7 +8,7 @@
 #ifndef INC_GLOBAL_H_
 #define INC_GLOBAL_H_
 
-#include"software_timer.h"
+#include "software_timer.h"
 #include "led_pannel.h"
 #include "app_i2c_lcd.h"
 #include "uart_reading.h"
