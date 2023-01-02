@@ -34,3 +34,4 @@
 ../Core/Src/app_i2c_lcd.c:461:6:Show_Box_ID	32	static
 ../Core/Src/app_i2c_lcd.c:470:6:Show_KWH	40	static
 ../Core/Src/app_i2c_lcd.c:482:6:displayNum	56	static
+../Core/Src/app_i2c_lcd.c:507:6:displayInMode	48	static

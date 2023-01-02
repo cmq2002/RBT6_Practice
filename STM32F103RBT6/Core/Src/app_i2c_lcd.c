@@ -484,18 +484,36 @@ void displayNum(int num1, int num2, int state1, int state2){
 	char str2[16];
 
 	if (state1 == STATE_RED)
-		sprintf(str1, "Lane1->R: %03d", num1);
+		sprintf(str1, "Lane1->R: %03d ", num1);
 	else if (state1 == STATE_GREEN)
-		sprintf(str1, "Lane1->G: %03d", num1);
+		sprintf(str1, "Lane1->G: %03d ", num1);
 	else if (state1 == STATE_YELLOW)
-		sprintf(str1, "Lane1->Y: %03d", num1);
+		sprintf(str1, "Lane1->Y: %03d ", num1);
 
 	if (state2 == STATE_RED)
-		sprintf(str2, "Lane2->R: %03d", num2);
+		sprintf(str2, "Lane2->R: %03d ", num2);
 	else if (state2 == STATE_GREEN)
-		sprintf(str2, "Lane2->G: %03d", num2);
+		sprintf(str2, "Lane2->G: %03d ", num2);
 	else if (state2 == STATE_YELLOW)
-		sprintf(str2, "Lane2->Y: %03d", num2);
+		sprintf(str2, "Lane2->Y: %03d ", num2);
+
+	Lcd_Goto_XY(0, 0);
+	Lcd_Send_String((char*)str1);
+
+	Lcd_Goto_XY(1, 0);
+	Lcd_Send_String((char*)str2);
+}
+
+void displayInMode (int modeNum, int timeNum){
+	char str1[16];
+	char str2[16];
+	if (modeNum == MODE2){
+		sprintf(str1, "Mode     : 002");
+	}
+	else if (modeNum == MODE3){
+		sprintf(str1, "Mode     : 003");
+	}
+		sprintf(str2, "Wait time: %03d", timeNum);
 
 	Lcd_Goto_XY(0, 0);
 	Lcd_Send_String((char*)str1);

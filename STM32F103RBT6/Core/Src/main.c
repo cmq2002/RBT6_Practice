@@ -23,7 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "global.h"
-#include "fsm_automatic.h"
+#include "system_fsm.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -111,9 +111,12 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_UART_Receive_IT(&huart3, &buffer_byte, 1);
+
   HAL_GPIO_WritePin(OE_GPIO_Port, OE_Pin, RESET);
   outputEnable();
+
   Lcd_Initialization();
+
   initWaitingTime();
   initVar();
   setTimer1(1);
@@ -124,12 +127,12 @@ int main(void)
 
   while (1)
   {
-//	if (timer1_flag == 1){
-//		HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
-//		setTimer1(100);
-//	}
+	if (timer1_flag == 1){
+		//For testing hardware
+		setTimer1(100);
+	}
 
-	fsm_automatic_run();
+	fsm_run();
 
 	if (buffer_flag == 1){
 		cmd_parser_fsm();

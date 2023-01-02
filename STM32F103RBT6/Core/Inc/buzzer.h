@@ -9,6 +9,7 @@
 #define INC_BUZZER_H_
 
 #include "main.h"
+#include "global.h"
 
 #define NOTE_C0  16
 #define NOTE_CS0 17

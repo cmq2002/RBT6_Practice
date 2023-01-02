@@ -35,5 +35,6 @@ void Show_KWH(uint32_t ws);
 
 void displayNum (int num1, int num2, int state1, int state2);
 
+void displayInMode (int modeNum, int timeNum);
 
 #endif /* APP_I2C_LCD_H_ */

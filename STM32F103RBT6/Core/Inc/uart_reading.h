@@ -13,22 +13,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define INIT_UART 0
-
-#define READING 1
-
-#define STOP 2
-
-#define CMD_WAITING 3
-#define CMD_WAITING_O 4
-#define CMD_WAITING_OK 5
-#define CMD_WAITING_R 6
-#define CMD_WAITING_RS 7
-#define CMD_WAITING_RST 10
-
-#define RST 8
-
-#define OK 9
 
 #define MAX_CMD_SIZE 3
 

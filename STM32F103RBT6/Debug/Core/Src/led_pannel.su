@@ -10,4 +10,6 @@
 ../Core/Src/led_pannel.c:58:6:ledDisplay2	16	static
 ../Core/Src/led_pannel.c:70:6:ledDisplay3	16	static
 ../Core/Src/led_pannel.c:82:6:ledDisplay4	16	static
-../Core/Src/led_pannel.c:95:6:enableLedPannel	16	static
+../Core/Src/led_pannel.c:94:6:ledDisplay5	16	static
+../Core/Src/led_pannel.c:106:6:ledDisplay6	16	static
+../Core/Src/led_pannel.c:118:6:enableLedPannel	16	static
