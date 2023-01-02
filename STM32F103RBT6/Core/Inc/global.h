@@ -22,32 +22,20 @@
 #define STATE_GREEN 2
 #define STATE_YELLOW 3
 
-// For Mode2-4
+// For Mode2 and 3
 #define TOGGLE 1
 #define INCREASE 2
 #define DECREASE 3
 #define SAVE 4
 
-// Use to specify which 7-seg led is blinked
-#define DISPLAY 1
-#define CLEAR 2
-
 // Threshold for waiting time
 #define UPPER_BOUND 999
 #define LOWER_BOUND 1
 
-/*-----------------------------4 modes available--------------------------------*/
+/*-----------------------------3 modes available--------------------------------*/
 #define MODE1  1
 #define MODE2  2
 #define MODE3  3
-#define MODE4  4
-
-/*-----------------------------4 buttons available------------------------------*/
-#define NUM_OF_BUTTON 4
-#define BUTTON1 0
-#define BUTTON2 1
-#define BUTTON3 2
-#define BUTTON4 3
 
 /*-------------------------------Global Variables------------------------------*/
 //Keep track of current mode
@@ -79,12 +67,8 @@ extern int statusMODE3_1; // For blink led
 extern int statusMODE3_2; // For display mode and value
 extern int statusMODE3_3; // For making changes in waiting time
 
-// Status for MODE4
-extern int statusMODE4_1; // For blink led
-extern int statusMODE4_2; // For display mode and value
-extern int statusMODE4_3; // For making changes in waiting time
-
 void initWaitingTime(void);
+
 void initVar(void);
 
 #endif /* INC_GLOBAL_H_ */

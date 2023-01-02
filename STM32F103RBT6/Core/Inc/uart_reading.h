@@ -43,6 +43,6 @@ extern uint8_t buffer_flag;
 
 void cmd_parser_fsm();
 
-void uart_comms_fsm();
+void uart_control_fsm();
 
 #endif /* INC_UART_READING_H_ */

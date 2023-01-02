@@ -24,7 +24,7 @@ uint8_t cmd_index = 0;
 
 int isCmdEqualToRST(uint8_t str[]){
 	int flag = 0;
-	if (str[0] == 'R' && str[1] == 'S' && str[2] == 'T')
+	if (str[0] == 'R')
 		flag = 1;
 	else
 		flag = 0;
@@ -33,7 +33,7 @@ int isCmdEqualToRST(uint8_t str[]){
 
 int isCmdEqualToOK(uint8_t str[]){
 	int flag = 0;
-	if (str[0] == 'O' && str[1] == 'K')
+	if (str[0] == 'O')
 		flag = 1;
 	else
 		flag = 0;
@@ -176,10 +176,10 @@ void cmd_parser_fsm(){
 //		}
 //}
 
-void uart_comms_fsm(){
+void uart_control_fsm(){
 	if (cmd_flag == RST)
-		HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
-//		HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
+//		HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
+		HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, SET);
 	if (cmd_flag == OK)
 		HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, RESET);
 }

@@ -135,7 +135,8 @@ int main(void)
 		cmd_parser_fsm();
 		buffer_flag = 0;
 	}
-	uart_comms_fsm();
+
+	uart_control_fsm();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
