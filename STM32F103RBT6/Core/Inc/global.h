@@ -23,29 +23,25 @@
 #define STATE_YELLOW 3
 
 // For Mode2 and 3
-#define INCREASE 4
-#define DECREASE 5
-#define SAVE 6
+#define PREINC 4
+#define PREDEC 5
+#define INCREASE 6
+#define DECREASE 7
+#define SAVE 8
 
 // For uart reading
-#define INIT_UART 7
-
-#define READING 8
-
-#define STOP 9
-
+#define INIT_UART 9
+#define READING 10
+#define STOP 11
 //#define CMD_WAITING 3
 //#define CMD_WAITING_O 4
 //#define CMD_WAITING_OK 5
 //#define CMD_WAITING_R 6
 //#define CMD_WAITING_RS 7
 //#define CMD_WAITING_RST 10
-
-#define RST 10
-
-#define OK 11
-
-#define UNDEF 12
+#define RST 12
+#define OK 13
+#define UNDEF 14
 
 // Threshold for waiting time
 #define UPPER_BOUND 999

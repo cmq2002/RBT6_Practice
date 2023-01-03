@@ -137,12 +137,12 @@ void uart_control_fsm(){
 		mode = MODE3;
 		break;
 	case INCREASE:
-		if (mode == MODE2) statusMODE2 = INCREASE;
-		if (mode == MODE3) statusMODE3 = INCREASE;
+		if (mode == MODE2) statusMODE2 = PREINC;
+		if (mode == MODE3) statusMODE3 = PREINC;
 		break;
 	case DECREASE:
-		if (mode == MODE2) statusMODE2 = DECREASE;
-		if (mode == MODE3) statusMODE3 = DECREASE;
+		if (mode == MODE2) statusMODE2 = PREDEC;
+		if (mode == MODE3) statusMODE3 = PREDEC;
 		break;
 	case OK:
 		if (mode == MODE2) statusMODE2 = SAVE;

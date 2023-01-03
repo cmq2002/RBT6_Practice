@@ -5,8 +5,8 @@
  *      Author: acer
  */
 
-#ifndef INC_SYSTEM_FSM_H_
-#define INC_SYSTEM_FSM_H_
+#ifndef INC_FSM_H_
+#define INC_FSM_H_
 
 #include "main.h"
 #include "global.h"
@@ -14,4 +14,4 @@
 void ensureInBoundary();
 void fsm_run();
 
-#endif /* INC_SYSTEM_FSM_H_ */
+#endif /* INC_FSM_H_ */

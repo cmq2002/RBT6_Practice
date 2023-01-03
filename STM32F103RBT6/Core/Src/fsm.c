@@ -5,7 +5,7 @@
  *      Author: acer
  */
 
-#include "system_fsm.h"
+#include "fsm.h"
 
 int num_buffer[2] = {0,0};
 int state_buffer[2] = {0,0};
@@ -128,17 +128,25 @@ void fsm_run(void){
 			case INIT:
 				ensureInBoundary();
 				break;
+			case PREINC:
+				statusMODE2 = INCREASE;
+				setTimer3(1);
+				break;
 			case INCREASE:
-//				if (timer3_flag == 1){
+				if (timer3_flag == 1){
 					mode2IncProcess();
-//					setTimer3(300);
-//				}
+					setTimer3(300);
+				}
+				break;
+			case PREDEC:
+				statusMODE2 = DECREASE;
+				setTimer4(1);
 				break;
 			case DECREASE:
-//				if (timer3_flag == 1){
+				if (timer4_flag == 1){
 					mode2DecProcess();
-//					setTimer3(300);
-//				}
+					setTimer4(300);
+				}
 				break;
 			case SAVE:
 				mode = MODE1;
@@ -159,17 +167,25 @@ void fsm_run(void){
 			case INIT:
 				ensureInBoundary();
 				break;
+			case PREINC:
+				statusMODE3 = INCREASE;
+				setTimer5(1);
+				break;
 			case INCREASE:
-//				if (timer3_flag == 1){
+				if (timer5_flag == 1){
 					mode3IncProcess();
-//					setTimer3(300);
-//				}
+					setTimer5(300);
+				}
+				break;
+			case PREDEC:
+				statusMODE3 = DECREASE;
+				setTimer6(1);
 				break;
 			case DECREASE:
-//				if (timer3_flag == 1){
+				if (timer6_flag == 1){
 					mode3DecProcess();
-//					setTimer3(300);
-//				}
+					setTimer6(300);
+				}
 				break;
 			case SAVE:
 				mode = MODE1;
