@@ -1,5 +1,5 @@
 # HCMUT MCU-MPU Assignment
-
+## Demonstration Video:
 ## General Information:
 - Major components: Custom board with STM32F103RBT6 MCU
 - Supporting multiple communications protocol: I2C, SPI, UART...
@@ -34,4 +34,4 @@
 ## For team members:
 - The main branch contains the latest version of our project.
 - You only need to pull from the main branch and create your own branch to test your feature.
-- Anything changes locally is submitted to the Modules folder as source code file only so that the leader can synchronize the work. 
+- Anything changes locally is submitted to the Modules folder as source code file only so that the leader can synchronize the work.
