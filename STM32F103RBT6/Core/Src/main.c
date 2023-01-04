@@ -117,6 +117,7 @@ int main(void)
 
   Lcd_Initialization();
 
+  //
   initWaitingTime();
   initVar();
   setTimer1(1);

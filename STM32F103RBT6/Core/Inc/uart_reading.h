@@ -23,6 +23,8 @@ extern uint8_t buffer[MAX_BUFFER_SIZE];
 extern uint8_t index_buffer;
 extern uint8_t buffer_flag;
 
+extern uint8_t cmd_flag;
+
 //extern uint8_t rxBuffer[3];
 
 void cmd_parser_fsm();

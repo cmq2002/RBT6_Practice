@@ -92,6 +92,8 @@ void cmd_parser_fsm(){
 				cmd_data[cmd_index] = buffer_byte;
 				cmd_index++;
 			}
+			else if (buffer_byte == '!')
+				status1 = READING;
 			else if (buffer_byte == '#'){
 				status1 = STOP;
 				cmd_index = 0;
@@ -127,156 +129,28 @@ void cmd_parser_fsm(){
 
 void uart_control_fsm(){
 	switch (cmd_flag){
-	case RST:
-		mode = MODE1;
-		break;
-	case MODE2:
-		mode = MODE2;
-		break;
-	case MODE3:
-		mode = MODE3;
-		break;
-	case INCREASE:
-		if (mode == MODE2) statusMODE2 = PREINC;
-		if (mode == MODE3) statusMODE3 = PREINC;
-		break;
-	case DECREASE:
-		if (mode == MODE2) statusMODE2 = PREDEC;
-		if (mode == MODE3) statusMODE3 = PREDEC;
-		break;
-	case OK:
-		if (mode == MODE2) statusMODE2 = SAVE;
-		if (mode == MODE3) statusMODE3 = SAVE;
-		break;
-	default:
-		break;
+		case RST:
+			mode = MODE1;
+			break;
+		case MODE2:
+			mode = MODE2;
+			break;
+		case MODE3:
+			mode = MODE3;
+			break;
+		case INCREASE:
+			if (mode == MODE2) statusMODE2 = INCREASE;
+			if (mode == MODE3) statusMODE3 = INCREASE;
+			break;
+		case DECREASE:
+			if (mode == MODE2) statusMODE2 = DECREASE;
+			if (mode == MODE3) statusMODE3 = DECREASE;
+			break;
+		case OK:
+			if (mode == MODE2) statusMODE2 = SAVE;
+			if (mode == MODE3) statusMODE3 = SAVE;
+			break;
+		default:
+			break;
 	}
-//	if (cmd_flag == RST)
-//		mode = MODE1;
-//	else if (cmd_flag == OK){
-//		if (mode == MODE2) statusMODE2 = SAVE;
-//		else if (mode == MODE3) statusMODE3 = SAVE;
-//		else return;
-//	}
-//	else if (cmd_flag == MODE2)
-//		mode = MODE2;
-//	else if (cmd_flag == MODE3)
-//		mode = MODE3;
-//	else if (cmd_flag == INCREASE){
-//		if (mode == MODE2) {statusMODE2 = INCREASE;}
-//		else if (mode == MODE3) {statusMODE3 = INCREASE;}
-//		else return;
-//	}
-//	else if (cmd_flag == DECREASE){
-//		if (mode == MODE2) {statusMODE2 = DECREASE;}
-//		else if (mode == MODE3) {statusMODE3 = DECREASE;}
-//		else return;
-//	}
-//	else return;
 }
-
-//void cmd_parser_fsm(){
-//		switch (cmdParserStatus){
-//		case INIT_UART:
-//			if (buffer[traveler] == '!')
-//			{
-//				cmdParserStatus = CMD_WAITING;
-//			}
-//			traveler++;
-//			if (buffer_flag == 0)
-//			{
-//				index_buffer = 0;
-//				traveler = 0;
-//			}
-//			break;
-//		case CMD_WAITING:
-//			if (buffer[traveler] == 'O')
-//			{
-//				cmdParserStatus = CMD_WAITING_O;
-//			}
-//			else if (buffer[traveler] == 'R')
-//			{
-//				cmdParserStatus = CMD_WAITING_R;
-//			}
-//			else cmdParserStatus = INIT_UART;
-//			traveler++;
-//			if (buffer_flag == 0)
-//			{
-//				index_buffer = 0;
-//				traveler = 0;
-//			}
-//			break;
-//	//-----------------------------------------------------
-//		case CMD_WAITING_O:
-//			if (buffer[traveler] == 'K')
-//			{
-//				cmdParserStatus = CMD_WAITING_OK;
-//			}
-//			else cmdParserStatus = INIT_UART;
-//			traveler++;
-//			if (buffer_flag == 0)
-//			{
-//				index_buffer = 0;
-//				traveler = 0;
-//			}
-//			break;
-//		case CMD_WAITING_OK:
-//			if (buffer[traveler] == '#')
-//			{
-//				cmd_flag = OK;
-//				cmdParserStatus = INIT_UART;
-//			}
-//			else cmdParserStatus = INIT_UART;
-//			traveler++;
-//			if (buffer_flag == 0)
-//			{
-//				index_buffer = 0;
-//				traveler = 0;
-//			}
-//			break;
-//	//-----------------------------------------------------
-//		case CMD_WAITING_R:
-//			if (buffer[traveler] == 'S')
-//			{
-//				cmdParserStatus = CMD_WAITING_RS;
-//			}
-//			else cmdParserStatus = INIT_UART;
-//			traveler++;
-//			if (buffer_flag == 0)
-//			{
-//				index_buffer = 0;
-//				traveler = 0;
-//			}
-//			break;
-//		case CMD_WAITING_RS:
-//			if (buffer[traveler] == 'T')
-//			{
-//				cmdParserStatus = CMD_WAITING_RST;
-//			}
-//			else cmdParserStatus = INIT_UART;
-//			traveler++;
-//			if (buffer_flag == 0)
-//			{
-//				index_buffer = 0;
-//				traveler = 0;
-//			}
-//			break;
-//		case CMD_WAITING_RST:
-//			if (buffer[traveler] == '#')
-//			{
-//				cmd_flag = RST;
-//				cmdParserStatus = INIT_UART;
-//			}
-//			else cmdParserStatus = INIT_UART;
-//			traveler++;
-//			if (buffer_flag == 0)
-//			{
-//				index_buffer = 0;
-//				traveler = 0;
-//			}
-//			break;
-//	//-----------------------------------------------------
-//		default:
-//			break;
-//		}
-//}

@@ -6,7 +6,6 @@
  */
 
 #include "fsm.h"
-
 int num_buffer[2] = {0,0};
 int state_buffer[2] = {0,0};
 int mode_buffer = 0;
@@ -69,7 +68,7 @@ void fsm_run(void){
 					else{
 						state_buffer[1] = STATE_YELLOW;
 						enableLedPannel(2);
-//						HAL_GPIO_TogglePin(BUZZER_GPIO_Port,BUZZER_Pin);
+						HAL_GPIO_TogglePin(BUZZER_GPIO_Port,BUZZER_Pin);
 						num_buffer[0] = counterRed;
 						num_buffer[1] = counterRed;
 					}
@@ -102,7 +101,7 @@ void fsm_run(void){
 				state_buffer[1] = STATE_RED;
 				if (timer2_flag == 1){
 					enableLedPannel(4);
-//					HAL_GPIO_TogglePin(BUZZER_GPIO_Port,BUZZER_Pin);
+					HAL_GPIO_TogglePin(BUZZER_GPIO_Port,BUZZER_Pin);
 					num_buffer[0] = counterYellow;
 					num_buffer[1] = counterYellow;
 					counterYellow--;
@@ -119,7 +118,7 @@ void fsm_run(void){
 		displayNum(num_buffer[0], num_buffer[1], state_buffer[0], state_buffer[1]);
 	}
 
-	if (mode == MODE2){
+	else if (mode == MODE2){
 		HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
 		mode_buffer = MODE2;
 		time_buffer = AUTO_GREEN;
@@ -128,28 +127,19 @@ void fsm_run(void){
 			case INIT:
 				ensureInBoundary();
 				break;
-			case PREINC:
-				statusMODE2 = INCREASE;
-				setTimer3(1);
-				break;
 			case INCREASE:
-				if (timer3_flag == 1){
-					mode2IncProcess();
-					setTimer3(300);
-				}
-				break;
-			case PREDEC:
-				statusMODE2 = DECREASE;
-				setTimer4(1);
+				mode2IncProcess();
+				statusMODE2=INIT;
+				cmd_flag = UNDEF;
 				break;
 			case DECREASE:
-				if (timer4_flag == 1){
-					mode2DecProcess();
-					setTimer4(300);
-				}
+				mode2DecProcess();
+				statusMODE2=INIT;
+				cmd_flag = UNDEF;
 				break;
 			case SAVE:
 				mode = MODE1;
+				//Auto_GREEN -> EPROM
 				initVar();
 				break;
 			default:
@@ -158,7 +148,7 @@ void fsm_run(void){
 		displayInMode(mode_buffer, time_buffer);
 	}
 
-	if (mode == MODE3){
+	else if (mode == MODE3){
 		HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
 		mode_buffer = MODE3;
 		time_buffer = AUTO_YELLOW;
@@ -167,25 +157,17 @@ void fsm_run(void){
 			case INIT:
 				ensureInBoundary();
 				break;
-			case PREINC:
-				statusMODE3 = INCREASE;
-				setTimer5(1);
-				break;
 			case INCREASE:
-				if (timer5_flag == 1){
-					mode3IncProcess();
-					setTimer5(300);
-				}
-				break;
-			case PREDEC:
-				statusMODE3 = DECREASE;
-				setTimer6(1);
+				mode3IncProcess();
+				statusMODE3=INIT;
+				cmd_flag = MODE3;
+				mode = MODE3;
 				break;
 			case DECREASE:
-				if (timer6_flag == 1){
-					mode3DecProcess();
-					setTimer6(300);
-				}
+				mode3DecProcess();
+				statusMODE3=INIT;
+				cmd_flag = MODE3;
+				mode = MODE3;
 				break;
 			case SAVE:
 				mode = MODE1;
