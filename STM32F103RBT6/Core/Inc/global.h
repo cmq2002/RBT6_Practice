@@ -11,6 +11,7 @@
 #include "software_timer.h"
 #include "led_pannel.h"
 #include "app_i2c_lcd.h"
+#include "app_25LC512.h"
 #include "uart_reading.h"
 #include "buzzer.h"
 

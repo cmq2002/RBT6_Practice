@@ -23,12 +23,14 @@ Core/Src/app_i2c_lcd.o: ../Core/Src/app_i2c_lcd.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/global.h ../Core/Inc/software_timer.h \
  ../Core/Inc/led_pannel.h ../Core/Inc/app_i2c_lcd.h \
- ../Core/Inc/uart_reading.h ../Core/Inc/buzzer.h
+ ../Core/Inc/app_25LC512.h ../Core/Inc/uart_reading.h \
+ ../Core/Inc/buzzer.h
 ../Core/Inc/app_i2c_lcd.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -54,6 +56,7 @@ Core/Src/app_i2c_lcd.o: ../Core/Src/app_i2c_lcd.c \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
@@ -61,5 +64,6 @@ Core/Src/app_i2c_lcd.o: ../Core/Src/app_i2c_lcd.c \
 ../Core/Inc/software_timer.h:
 ../Core/Inc/led_pannel.h:
 ../Core/Inc/app_i2c_lcd.h:
+../Core/Inc/app_25LC512.h:
 ../Core/Inc/uart_reading.h:
 ../Core/Inc/buzzer.h:
