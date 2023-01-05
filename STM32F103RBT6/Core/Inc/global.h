@@ -45,7 +45,7 @@
 #define UNDEF 14
 
 // Threshold for waiting time
-#define UPPER_BOUND 999
+#define UPPER_BOUND 200
 #define LOWER_BOUND 1
 
 /*-----------------------------3 modes available--------------------------------*/
@@ -58,10 +58,12 @@
 extern int mode;
 
 // Waiting time at each state
-extern int AUTO_RED;
-extern int AUTO_GREEN ;
-extern int AUTO_YELLOW;
-
+extern uint32_t AUTO_RED;
+extern uint32_t AUTO_GREEN ;
+extern uint32_t AUTO_YELLOW;
+extern uint32_t AUTO_RED2[1];
+extern uint32_t AUTO_GREEN2[1] ;
+extern uint32_t AUTO_YELLOW2[1];
 // Counter for the lights
 extern int counterRed;
 extern int counterGreen;

@@ -13,10 +13,6 @@ uint8_t buffer_byte;
 uint8_t buffer[MAX_BUFFER_SIZE];
 uint8_t index_buffer = 0;
 uint8_t buffer_flag = 0;
-uint8_t mode2Inc_flag = 0;
-uint8_t mode2Dec_flag = 0;
-uint8_t mode3Inc_flag = 0;
-uint8_t mode3Dec_flag = 0;
 
 // Locally use in automatic_fsm.c
 uint8_t status1 = INIT_UART;

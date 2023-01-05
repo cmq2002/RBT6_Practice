@@ -120,7 +120,7 @@ int main(void)
   outputEnable();
 
   Lcd_Initialization();
-
+  MC25LC512_Initialize();
 
   initWaitingTime();
   initVar();
@@ -129,6 +129,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+//  uint32_t test = 0x01020304;
+//  MC25LC512_Write_Words(0x0000, &test, 1);
 
   while (1)
   {

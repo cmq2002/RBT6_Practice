@@ -25,6 +25,7 @@ void mode2IncProcess(){
 	time_buffer = AUTO_GREEN;
 	AUTO_RED = AUTO_GREEN + AUTO_YELLOW;
 	ensureInBoundary();
+//	MC25LC512_Write_Words(0x00C9, &AUTO_GREEN, 4);
 }
 
 void mode2DecProcess(){
@@ -32,6 +33,7 @@ void mode2DecProcess(){
 	time_buffer = AUTO_GREEN;
 	AUTO_RED = AUTO_GREEN + AUTO_YELLOW;
 	ensureInBoundary();
+//	MC25LC512_Write_Words(0x00C9, &AUTO_GREEN, 4);
 }
 
 void mode3IncProcess(){
@@ -39,6 +41,7 @@ void mode3IncProcess(){
 	time_buffer = AUTO_YELLOW;
 	AUTO_RED = AUTO_GREEN + AUTO_YELLOW;
 	ensureInBoundary();
+//	MC25LC512_Write_Words(0x10C9, &AUTO_YELLOW, 4);
 }
 
 void mode3DecProcess(){
@@ -46,6 +49,7 @@ void mode3DecProcess(){
 	time_buffer = AUTO_YELLOW;
 	AUTO_RED = AUTO_GREEN + AUTO_YELLOW;
 	ensureInBoundary();
+//	MC25LC512_Write_Words(0x10C9, &AUTO_YELLOW, 4);
 }
 
 void fsm_run(void){
@@ -140,6 +144,7 @@ void fsm_run(void){
 			case SAVE:
 				mode = MODE1;
 				//Auto_GREEN -> EPROM
+//				MC25LC512_Write_Words(0x00C9, &AUTO_GREEN, 4);
 				initVar();
 				break;
 			default:
@@ -171,6 +176,7 @@ void fsm_run(void){
 				break;
 			case SAVE:
 				mode = MODE1;
+//				MC25LC512_Write_Words(0x10C9, &AUTO_YELLOW, 4);
 				initVar();
 				break;
 			default:
