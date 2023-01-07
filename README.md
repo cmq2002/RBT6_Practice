@@ -20,7 +20,7 @@
   - uart_reading.h & .c: intercept uart command and execute the corresponding feature
   - app_25LC512.h & .c: using Eprom to store and fetch data
   - software_timer: provide a timer 
-## System's Behavior:
+## About the System's Behavior:
 - Initially, system runs in auto mode: Led Panel for trafficlight, LCD displays wait time for each lane and the state (RED, GREEN, YELLOW) of that lane, whenever one lane in YELLOW state, a buzzer will turn on every 1 sec to warn the vehicles slowing down for pedestrian crossing the road.
 - We define a set of uart command as following:
   - !R# : Come back to AUTO mode
