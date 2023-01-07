@@ -1,4 +1,4 @@
-# HCMUT MCU-MPU Assignment
+# Simple Trafficlight System - HCMUT MCU-MPU Assignment
 ## General Information:
 - Major components: Custom board with STM32F103RBT6 MCU.
 - Supporting multiple communications protocol: I2C, SPI, UART...
